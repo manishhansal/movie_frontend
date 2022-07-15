@@ -30,8 +30,8 @@ const Movies = () => {
       .catch((err) => console.log(err));
     };
     
-    const handleUpdate = () => {
-        navigate('/updatemovie')
+    const handleUpdate = (id) => {
+        navigate(`/updatemovie/:${id}`)
     }
   return (
     <>
@@ -42,7 +42,7 @@ const Movies = () => {
           <h3>Rating : {item.rating}</h3>
           <h3>Category : {item.category}</h3>
           <h3>Price : Rs {item.price}</h3>
-          <button style={{marginRight: "5px"}} onClick={handleUpdate}>Update</button>
+          <button style={{marginRight: "5px"}} onClick={() => handleUpdate(item._id)}>Update</button>
           <button onClick={() => handleDelete(item._id)}>Delete</button>
           <hr />
         </div>

@@ -1,5 +1,6 @@
 import React from "react";
-import './addMovie.css'
+import { useParams } from "react-router-dom";
+import "./addMovie.css";
 const UpdateMovie = () => {
   const [form, setForm] = React.useState({
     movieName: "",
@@ -8,6 +9,10 @@ const UpdateMovie = () => {
     category: "",
     price: "",
   });
+
+  const { movieId } = useParams();
+  const id = movieId.substring(1, movieId.length);
+  console.log(id);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -23,19 +28,19 @@ const UpdateMovie = () => {
 
     const payloadjson = JSON.stringify(form);
 
-    fetch(`http://localhost:9008/movie`, {
-      method: "POST",
+    fetch(`http://localhost:9008/movie/${id}`, {
+      method: "PUT",
       body: payloadjson,
       headers: {
         "content-type": "application/json",
       },
     })
       .then((res) => {
-        // console.log(res)
+        console.log(res);
         // console.log(res.status)
 
         if (res.status === 200) {
-          alert("Movie added successfully..");
+          alert("Movie has been updated successfully..");
         }
       })
       .catch((err) => console.log(err));
@@ -44,8 +49,8 @@ const UpdateMovie = () => {
   const { movieName, movieTitle, rating, category, price } = form;
   // console.log(form)
   return (
-      <div className="mb-3">
-          <h1>Update Movie</h1>
+    <div className="mb-3">
+      <h1>Update Movie</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
