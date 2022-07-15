@@ -9,10 +9,8 @@ const UpdateMovie = () => {
     category: "",
     price: "",
   });
-
   const { movieId } = useParams();
   const id = movieId.substring(1, movieId.length);
-  console.log(id);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -47,7 +45,7 @@ const UpdateMovie = () => {
   };
 
   const { movieName, movieTitle, rating, category, price } = form;
-  // console.log(form)
+
   return (
     <div className="mb-3">
       <h1>Update Movie</h1>
