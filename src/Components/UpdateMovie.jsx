@@ -1,6 +1,6 @@
 import React from "react";
 import './addMovie.css'
-const AddMovies = () => {
+const UpdateMovie = () => {
   const [form, setForm] = React.useState({
     movieName: "",
     movieTitle: "",
@@ -45,7 +45,7 @@ const AddMovies = () => {
   // console.log(form)
   return (
       <div className="mb-3">
-          <h1>Add Movie</h1>
+          <h1>Update Movie</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -88,4 +88,4 @@ const AddMovies = () => {
   );
 };
 
-export default AddMovies;
+export default UpdateMovie;

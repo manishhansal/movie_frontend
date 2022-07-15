@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Movies = () => {
-  const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
+    const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -26,17 +28,21 @@ const Movies = () => {
         fetchData();
       })
       .catch((err) => console.log(err));
-  };
+    };
+    
+    const handleUpdate = () => {
+        navigate('/updatemovie')
+    }
   return (
     <>
       {data?.map((item) => (
         <div key={item._id}>
-          <h2>Movie Name : {item.movieName}</h2>
-          <h2>Movie Title : {item.movieTitle}</h2>
-          <h2>Rating : {item.rating}</h2>
-          <h2>Category : {item.category}</h2>
-          <h2>Price : Rs {item.price}</h2>
-          <button>Update</button>
+          <h3>Movie Name : {item.movieName}</h3>
+          <h3>Movie Title : {item.movieTitle}</h3>
+          <h3>Rating : {item.rating}</h3>
+          <h3>Category : {item.category}</h3>
+          <h3>Price : Rs {item.price}</h3>
+          <button style={{marginRight: "5px"}} onClick={handleUpdate}>Update</button>
           <button onClick={() => handleDelete(item._id)}>Delete</button>
           <hr />
         </div>
